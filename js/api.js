@@ -40,9 +40,9 @@ function CreateElement( line ) {
 }
 
 
-const progressbar = document.querySelector('.scrollbar');
+// const progressbar = document.querySelector('.scrollbar');
 
-let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+// let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 
 fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
@@ -54,7 +54,7 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     }
     
     document.body.scrollTop = 0
-    window.addEventListener('click', (e) => {
+    window.addEventListener('scroll', (e) => {
         
         console.log(i)
         if (i>=10) {
@@ -71,6 +71,16 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     return data.users
 
 })
+var form = document.querySelector(".form_adduser")
+var btn = document.querySelector(".bouton_principal")
+btn.addEventListener('click', (e)=>{
+    e.preventDefault()
+    form.style.display = "block"
+    elem.style.display = "none"
+    console.log(btn)
+    console.log(form)
+})
+
 
 // console.log('hgjjghjggjgh',users)
 // users.then(function(resp) {
