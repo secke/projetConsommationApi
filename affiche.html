@@ -18,6 +18,12 @@
             <i class="fa-regular fa-user" id="iconuser"></i>
             <span >User</span>
         </div>
+        <div class="div_bouton_page_principal">
+         </div>
+         <div class="div_bouton_page_principal">
+            <!-- <a href="{{ url_for('adduser') }}"  class=" bouton_principal"><button class="btn_ajout">+Ajouter user</button></a> -->
+            <a href="" class="bouton_principal"><button class="btn_ajout">Update user</button></a>
+        </div>
     </nav>
     
     <div id="content">
@@ -30,7 +36,67 @@
             </div>
         </div>
     </div>
-    <div class="scrollbar"></div>
-    <div class="clickscrollbar"></div>
+    <form action='http://127.0.0.1:5000/api_groupe_7/users' class="form_adduser" method="post">
+        <div class="adduser_champ">
+            <label for="" class="label_adduser">Name</label>
+            <input type="text" class="input_adduser" name="nom">
+        </div>
+        <div class="adduser_champ">
+            <label >Username</label>
+            <input type="text" class="input_adduser" name="prenom">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Email</label>
+            <input type="email" class="input_adduser" name="mail">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Street</label>
+            <input type="text" class="input_adduser" name="street">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Suite</label>
+            <input type="text" class="input_adduser" name="suite">
+        </div>
+        <div class="adduser_champ">
+            <label for="">City</label>
+            <input type="text" class="input_adduser" name="city">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Zipcode</label>
+            <input type="text" class="input_adduser" name="zipcode">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Latitude</label>
+            <input type="text" class="input_adduser" name="lat">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Longitude</label>
+            <input type="text" class="input_adduser" name="lng">
+        </div>
+
+        <div class="adduser_champ">
+            <label for="">Phone</label>
+            <input type="text" class="input_adduser" name="tel">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Website</label>
+            <input type="text" class="input_adduser" name="site">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Company Name</label>
+            <input type="text" class="input_adduser" name="companyName">
+        </div>
+        <div class="adduser_champ">
+            <label for="">CatchPhrase</label>
+            <input type="text" class="input_adduser" name="catchphrase">
+        </div>
+        <div class="adduser_champ">
+            <label for="">Company Bs</label>
+            <input type="text" class="input_adduser" name="bs">
+        </div>
+        <div class="adduser_champ div_btn_adduser">
+            <button type="submit" class="btn_submit">Valider</button>
+        </div>
+    </form>
 </body>
 </html>

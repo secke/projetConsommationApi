@@ -60,7 +60,6 @@ function createinput(div2,val){
 
 
 function CreateElement( line ) {
-    // var tab = [ 'name','username','email']
     var crediv = document.createElement('div')
     crediv.classList = "container1"
     var div1 = document.querySelector('#content').appendChild(crediv)

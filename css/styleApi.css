@@ -6,13 +6,19 @@ body{
     height: 900px;
    
     width: 100%;
-    height: 960px;
+    height: 870px;
     overflow-y: scroll;
    
  }
 
  #content{
-     position: relative;
+     width: 90%;
+
+    display: flex;
+    /* position: relative; */
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
     scroll-behavior: smooth;
  }
 
@@ -70,17 +76,40 @@ main{
 
 
 .row{
+    display: flex;
     background-color:aliceblue;
     height: 50px;
-    margin-top: 5%;
+    margin-top: 3%;
+    align-items: center;
 }
 
 .col{
     display: flex;
     align-items: center;
+    width: 18%;
 }
 
-::-webkit-scrollbar{
+.btn_update{
+    width: 6%;
+    height: 60%;
+    background-color: green;
+    margin-left: 2%;
+    border-radius: 20%;
+    color: white;
+    text-align: center;
+}
+
+.btn_del{
+    width: 6%;
+    height: 60%;
+    background-color: red;
+    margin-left: 2%;
+    border-radius: 20%;
+    color: white;
+    text-align: center;
+}
+
+/* ::-webkit-scrollbar{
     width: 0;
     background: transparent;
 }
@@ -93,7 +122,7 @@ main{
     height: 0;
     opacity: 0;
     background-color: #532CA6;
-    /* background-color: linear-gradient(to top, #99b686, #4364f7, #add3ff); */
+    background-color: linear-gradient(to top, #99b686, #4364f7, #add3ff);
 }
 
 .clickscrollbar{
@@ -104,5 +133,115 @@ main{
     height: 100%;
     opacity: 0;
     background-color: #532CA6;
+    background-color: rgb(170, 170, 170, 0.356);
+} */
+
+
+.title_adduser{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+ }
+ 
+ .form_adduser{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    display:none;
+ }
+ 
+ .adduser_champ{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+ }
+ .adduser_champ label{
+    background-color: #532CA6;
+    color: white;
+    font-size: 30px;
+    /* padding: 10px; */
+    margin-left: 23%;
+    width: 40%;
+    text-align: center;
+ }
+ .input_adduser{
+    width: 50%;
+    height: 60%;
+    background-color: #F1F1F1;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: #F1F1F1;
+    font-size: 50px;
+    
+ }
+ .div_btn_adduser{
+    display: flex;
+    justify-content: center;
+ }
+ 
+ .btn_submit{
+    width: 30%;
+    height: 60%;
+    font-size: 25px;
+    background-color: #AE25DE;
+    color: white;
+    border-radius: 15px;
+    border: #AE25DE;
+ }
+ 
+ .choice_user{
+    width: 30%;
+    height: 15%;
+    border: 2px solid #532CA6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 15%;
+    /* margin-left: 10%; */
+    font-size: 25px;
+    /* background-color: #5d5d5d; */
+    background-color: #532CA6;
+    color: white;
+    border-radius: 1em;
+    display: none;
+ }
+ .champ_choice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ #choice_user{
+    width: 20%;
+    height: 35%;
+ }
+ 
+ .btn_choice_user{
+    display: flex;
+    justify-content:center;
+    width: 15%;
+    height: 25%;
+    margin-left: 80%;
+    background-color: #AE25DE;
+    border: #AE25DE;
+    color: white;
+    margin-bottom: 3px;
+    border-radius: 0.2em;
+ 
+ }
+ 
     /* background-color: rgb(170, 170, 170, 0.356); */
-}
+
