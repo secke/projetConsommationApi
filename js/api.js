@@ -1,3 +1,22 @@
+////////Function pour modifier un utilisateur/////
+function modifuser(id,valeur, cle){
+        id=String(id)
+        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id
+        new_dict = {}
+        new_dict[`${cle}`] = valeur
+    let promise = fetch(url, {
+        method: "PUT", 
+        headers: {
+        "Content-Type": 'application/json'
+        },
+        
+        body: JSON.stringify(
+            new_dict
+        )
+    });
+}
+
+
 
 /////////////////Function supprimer attribut readOnly///
 function supreadonly(elem){
@@ -62,7 +81,7 @@ function createbutton(div2,clas,text,line) {
 
                 method : 'PUT',
 
-                headers: new Headers({"conten-Type" : "text/plain", enctype: "application/x-www-form-urlencode"}),
+                headers: new Headers({"conten-Type" : "text/plain", "enctype":""}),
 
                 mode : 'cors',
 
@@ -91,6 +110,8 @@ function createbutton(div2,clas,text,line) {
                             "bs":inp[13].value
                         }
                     } 
+    
+                     
             })
         })
 
@@ -130,7 +151,7 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     return res.json()
 }).then(function(data){ 
     console.log(data.users[0]);
-    for (var i = 0; i<=6; i++) {
+    for (var i = 0; i<=4; i++) {
         CreateElement(data.users[i])
     }
     
