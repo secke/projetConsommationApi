@@ -56,8 +56,42 @@ function createbutton(div2,clas,text,line) {
         // }
         // console.log(form)
         
-        submit.addEventListener('click', ()=>{
-            
+        submit.addEventListener('click', (e)=>{
+            e.preventDefault()
+            fetch(`http://127.0.0.1:5000/api_groupe_7/users/${line.id}`, {
+
+                method : 'PUT',
+
+                headers: new Headers({"conten-Type" : "text/plain", enctype: "application/x-www-form-urlencode"}),
+
+                mode : 'cors',
+
+                cache : 'default',
+                
+                body :
+                    {
+                        "name":inp[0].value,
+                        "username":inp[1].value,
+                        "email":inp[2].value,
+                        "address":{
+                            "street":inp[3].value,
+                            "suite":inp[4].value,
+                            "city":inp[5].value,
+                            "zipcode":inp[6].value,
+                            "geo":{
+                                "lat":inp[7].value,
+                                "long":inp[8].value 
+                            },
+                            "phone":inp[9].value,
+                            "websit":inp[10].value
+                        },
+                        "company":{
+                            "name":inp[11].value,
+                            "catchPhrase":inp[12].value,
+                            "bs":inp[13].value
+                        }
+                    } 
+            })
         })
 
     })
@@ -96,7 +130,7 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     return res.json()
 }).then(function(data){ 
     console.log(data.users[0]);
-    for (var i = 0; i<=4; i++) {
+    for (var i = 0; i<=6; i++) {
         CreateElement(data.users[i])
     }
     
