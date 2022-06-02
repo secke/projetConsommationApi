@@ -16,16 +16,23 @@ function modifuser(id,valeur, cle){
     });
 }
 
+function savechange(elem,id){
+    elem.addEventListener("change",function (){
+        var valeur=elem.value
+        var cle=elem.getAttribute('class')
+         modifuser(id,valeur,cle)
+         elem.setAttribute("readonly","true")
+     })
+}
 
+var id;
 
 /////////////////Function supprimer attribut readOnly///
 function supreadonly(elem){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
-    elem.addEventListener("change",function (){
-        console.log(elem.value);
-    })
+        savechange(elem,id)
     
 
 }
@@ -33,11 +40,43 @@ function supreadonly(elem){
 
 ////////// Fonction pour creer un input
 function createinput(div2,val){
-    var div4 = div2.appendChild(document.createElement('input'))
-    div4.classList = "col"
-    div4.setAttribute('readonly',"true")
-    div4.value = val
-    supreadonly(div4)
+    var tab = [ 'name','username','email','address']
+    for (i in tab){
+        var td=document.createElement("td")
+        var ntd=div2.appendChild(td)
+        var div4 = ntd.appendChild(document.createElement('input'))
+        div4.setAttribute('readonly',"true")
+        supreadonly(div4,val.id)
+        var j=tab[i]
+        if (j=="address"){
+            div4.value =val[j]['phone'];
+            div4.setAttribute("class",'phone')
+            
+        }
+        else{
+            div4.value =val[j]
+            div4.setAttribute("class",j)
+        }
+
+    }
+  
+   
+}
+
+function editline(bouton,id){
+    bouton.addEventListener('change',function () {
+        var tr=bouton.parentNode
+        var td=tr.childNodes;
+       for (i=0;i<=3;i++){
+           var input=td[i].querySelector("input")
+               input.removeAttribute("readonly")
+               input.style.backgroundColor = 'white'
+               savechange(input,id)
+           
+
+       }
+        
+    })
 }
 
 function data_form(line) {
@@ -59,9 +98,13 @@ function data_form(line) {
 
 var a = 'name'
 function createbutton(div2,clas,text,line) {
-    var div5 = div2.appendChild(document.createElement('button'))
+    var td= document.createElement("td")
+    var div5 = div2.appendChild(td).appendChild(document.createElement('button'))
     div5.classList = clas
     div5.innerText= text
+    var form=document.querySelector('form')
+    var elem=document.querySelector('table')
+    inp=form.querySelectorAll('.input_adduser')
     div5.addEventListener('click', (e)=>{
         e.preventDefault()
         form.style.display = "block"
@@ -126,26 +169,24 @@ function createbutton(div2,clas,text,line) {
     return div5
 }
 
-var elem = document.getElementById('content')
-var name,username,email,phone;
-var tab = [ `username`, `email`, `phone`]
-var line,phone;
-// console.log(tab)
+
 
 function CreateElement( line ) {
-    var crediv = document.createElement('div')
-    crediv.classList = "container1"
-    var div1 = document.querySelector('#content').appendChild(crediv)
-    var div2 = div1.appendChild(document.createElement('div'))
-    div2.classList="row row-cols-4"
-    createinput(div2,line.name)
-    createinput(div2,line.username)
-    createinput(div2,line.email)
-    createinput(div2,line.address.phone)
-    createbutton(div2, "btn_update", "Update",line)
-    createbutton(div2, "btn_del", "Del")
-    return div2
+    var cretr = document.createElement('tr')
+    var tbody=document.querySelector('#content').appendChild(cretr)
+    createinput(cretr,line)
+    var td=document.createElement("td")
+    var checkbox=document.createElement("INPUT")
+    checkbox.setAttribute("type","checkbox")
+    checkbox.setAttribute("class","editline")
+    var td=document.createElement("td").appendChild(checkbox)
+    cretr.appendChild(td)
+    editline(checkbox,line.id)
+    createbutton(cretr, "btn_update", "Update",line)
+    createbutton(cretr, "btn_del", "Del")
 
+
+ 
 }
 
 

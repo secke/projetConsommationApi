@@ -18,89 +18,86 @@
             <i class="fa-regular fa-user" id="iconuser"></i>
             <span >User</span>
         </div>
-        <div class="div_bouton_page_principal">
-         </div>
-         <div class="div_bouton_page_principal">
-            <!-- <a href="{{ url_for('adduser') }}"  class=" bouton_principal"><button class="btn_ajout">+Ajouter user</button></a> -->
-            <a href="" class="bouton_principal"><button class="btn_ajout">Update user</button></a>
-        </div>
     </nav>
+    <main>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Edit line</th>
+                <th>Edit All</th>
+                <th>Delete</th>
+            </tr>
+            <tbody  id="content">
     
-    <div id="content">
-        <div class="container" id="head">
-            <div class="row row-cols-4">
-            <div class="col">Name</div>
-            <div class="col">username</div>
-            <div class="col">Email</div>
-            <div class="col">Phone</div>
-            <div class="col">Modif/suppress</div>
+            </tbody>
+        </table>
+        <form  class="form_adduser" method="post">
+            <div class="adduser_champ">
+                <label for="" class="label_adduser">Name</label>
+                <input type="text" class="input_adduser" name="nom">
             </div>
-        </div>
-        <div class="Scrollbar"></div>
-        <i class="fa fa-caret-down clickscrollbar"></i>
-        <!-- <button class="clickscrollbar"><<</button>  -->
-    </div>
-    <form action='#' class="form_adduser" method="post">
-        <div class="adduser_champ">
-            <label for="" class="label_adduser">Name</label>
-            <input type="text" class="input_adduser" name="nom">
-        </div>
-        <div class="adduser_champ">
-            <label >Username</label>
-            <input type="text" class="input_adduser" name="prenom">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Email</label>
-            <input type="email" class="input_adduser" name="mail">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Street</label>
-            <input type="text" class="input_adduser" name="street">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Suite</label>
-            <input type="text" class="input_adduser" name="suite">
-        </div>
-        <div class="adduser_champ">
-            <label for="">City</label>
-            <input type="text" class="input_adduser" name="city">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Zipcode</label>
-            <input type="text" class="input_adduser" name="zipcode">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Latitude</label>
-            <input type="text" class="input_adduser" name="lat">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Longitude</label>
-            <input type="text" class="input_adduser" name="lng">
-        </div>
-
-        <div class="adduser_champ">
-            <label for="">Phone</label>
-            <input type="text" class="input_adduser" name="tel">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Website</label>
-            <input type="text" class="input_adduser" name="site">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Company Name</label>
-            <input type="text" class="input_adduser" name="companyName">
-        </div>
-        <div class="adduser_champ">
-            <label for="">CatchPhrase</label>
-            <input type="text" class="input_adduser" name="catchphrase">
-        </div>
-        <div class="adduser_champ">
-            <label for="">Company Bs</label>
-            <input type="text" class="input_adduser" name="bs">
-        </div>
-        <div class="adduser_champ div_btn_adduser">
-            <button type="submit" class="btn_submit">Valider</button>
-        </div>
-    </form>
+            <div class="adduser_champ">
+                <label >Username</label>
+                <input type="text" class="input_adduser" name="prenom">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Email</label>
+                <input type="email" class="input_adduser" name="mail">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Street</label>
+                <input type="text" class="input_adduser" name="street">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Suite</label>
+                <input type="text" class="input_adduser" name="suite">
+            </div>
+            <div class="adduser_champ">
+                <label for="">City</label>
+                <input type="text" class="input_adduser" name="city">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Zipcode</label>
+                <input type="text" class="input_adduser" name="zipcode">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Latitude</label>
+                <input type="text" class="input_adduser" name="lat">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Longitude</label>
+                <input type="text" class="input_adduser" name="lng">
+            </div>
+    
+            <div class="adduser_champ">
+                <label for="">Phone</label>
+                <input type="text" class="input_adduser" name="tel">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Website</label>
+                <input type="text" class="input_adduser" name="site">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Company Name</label>
+                <input type="text" class="input_adduser" name="companyName">
+            </div>
+            <div class="adduser_champ">
+                <label for="">CatchPhrase</label>
+                <input type="text" class="input_adduser" name="catchphrase">
+            </div>
+            <div class="adduser_champ">
+                <label for="">Company Bs</label>
+                <input type="text" class="input_adduser" name="bs">
+            </div>
+            <div class="adduser_champ div_btn_adduser">
+                <button type="submit" class="btn_submit">Valider</button>
+            </div>
+        </form>
+    </main>
+    <!-- <div class="scrollbar"></div>
+    <div class="clickscrollbar"></div> -->
 </body>
 </html>
