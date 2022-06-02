@@ -16,19 +16,21 @@ function modifuser(id,valeur, cle){
     });
 }
 
-
+function savechange(elem,id){
+    elem.addEventListener("change",function (){
+        var valeur=elem.value
+        var cle=elem.getAttribute('class')
+         modifuser(id,valeur,cle)
+         elem.setAttribute("readonly","true")
+     })
+}
 
 /////////////////Function supprimer attribut readOnly///
 function supreadonly(elem,id){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
-    elem.addEventListener("change",function (){
-       var valeur=elem.value
-       var cle=elem.getAttribute('class')
-        modifuser(id,valeur,cle)
-        elem.setAttribute("readonly","true")
-    })
+        savechange(elem,id)
     
 
 }
@@ -38,8 +40,9 @@ function supreadonly(elem,id){
 function createinput(div2,val){
     var tab = [ 'name','username','email','address']
     for (i in tab){
-        var div4 = div2.appendChild(document.createElement('input'))
-        div4.classList = "col"
+        var td=document.createElement("td")
+        var ntd=div2.appendChild(td)
+        var div4 = ntd.appendChild(document.createElement('input'))
         div4.setAttribute('readonly',"true")
         supreadonly(div4,val.id)
         var j=tab[i]
@@ -52,21 +55,125 @@ function createinput(div2,val){
             div4.value =val[j]
             div4.setAttribute("class",j)
         }
-    
 
     }
+  
    
 }
 
+////////////// Fonction editer champs /////////////
+function editline(bouton,id){
+    bouton.addEventListener('change',function () {
+        var tr=bouton.parentNode
+        var td=tr.childNodes;
+       for (i=0;i<=3;i++){
+           var input=td[i].querySelector("input")
+               input.removeAttribute("readonly")
+               input.style.backgroundColor = 'white'
+               savechange(input,id)
+           
+
+       }
+        
+    })
+}
+
+////// Fonction pour créer les boutons//////
+function createbutton(div2,clas,text,line) {
+    var td= document.createElement("td")
+    var div5 = div2.appendChild(td).appendChild(document.createElement('button'))
+    div5.classList = clas
+    div5.innerText= text
+    var form=document.querySelector('form')
+    var elem=document.querySelector('table')
+    inp=form.querySelectorAll('.input_adduser')
+    div5.addEventListener('click', (e)=>{
+        e.preventDefault()
+        form.style.display = "block"
+        elem.style.display = "none"
+        inp[0].value= line.name
+        inp[1].value = line.username
+        inp[2].value = line.email
+        inp[3].value = line.address.street
+        inp[4].value = line.address.suite
+        inp[5].value = line.address.city
+        inp[6].value = line.address.zipcode
+        inp[7].value = line.address.geo.lat
+        inp[8].value = line.address.geo.long
+        inp[9].value = line.address.phone
+        inp[10].value = line.address.websit
+        inp[11].value = line.company.name
+        inp[12].value = line.company.catchPhrase
+        inp[13].value = line.company.bs
+      
+
+    
+        
+        submit.addEventListener('click', (e)=>{
+            e.preventDefault()
+            var id=line.id
+            console.log(id);
+
+            fetch(`http://127.0.0.1:5000/api_groupe_7/users/${line.id}`, {
+
+                method : 'PUT',
+
+                headers: new Headers({"conten-Type" : "text/plain", "enctype":""}),
+
+                mode : 'cors',
+
+                cache : 'default',
+                
+                body :
+                    {
+                        "name":inp[0].value,
+                        "username":inp[1].value,
+                        "email":inp[2].value,
+                        "address":{
+                            "street":inp[3].value,
+                            "suite":inp[4].value,
+                            "city":inp[5].value,
+                            "zipcode":inp[6].value,
+                            "geo":{
+                                "lat":inp[7].value,
+                                "long":inp[8].value 
+                            },
+                            "phone":inp[9].value,
+                            "websit":inp[10].value
+                        },
+                        "company":{
+                            "name":inp[11].value,
+                            "catchPhrase":inp[12].value,
+                            "bs":inp[13].value
+                        }
+                    } 
+    
+                     
+            })
+        })
+
+    })
+    return div5
+}
+
+
 
 function CreateElement( line ) {
-    var crediv = document.createElement('div')
-    crediv.classList = "container1"
-    var div1 = document.querySelector('#content').appendChild(crediv)
-    var div2 = div1.appendChild(document.createElement('div'))
-    div2.classList="row row-cols-4"
-    createinput(div2,line)
-   
+    var cretr = document.createElement('tr')
+    var tbody=document.querySelector('#content').appendChild(cretr)
+    createinput(cretr,line)
+    var td=document.createElement("td")
+    var checkbox=document.createElement("INPUT")
+    checkbox.setAttribute("type","checkbox")
+    checkbox.setAttribute("class","editline")
+    var td=document.createElement("td").appendChild(checkbox)
+    cretr.appendChild(td)
+    editline(checkbox,line.id)
+    createbutton(cretr, "btn_update", "Update",line)
+    createbutton(cretr, "btn_del", "Del")
+
+
+ 
 }
 
 
