@@ -15,7 +15,7 @@ body{
      width: 90%;
     height: 80%;
     display: flex;
-    /* position: relative; */
+    position: relative;
     flex-direction: column;
     align-items: center;
     margin-left: 5%;
@@ -127,22 +127,29 @@ main{
     text-align: center;
 }
 
-/* ::-webkit-scrollbar{
+  /* ::-webkit-scrollbar{
     width: 0;
     background: transparent;
-}
+}  */
 
-.scrollbar{
-    position: absolute;
-    top: 0;
-    right: 0;
+.clickscrollbar{
+    position: relative;
+    top: 97%;
+    right: -49%;
     width: 15px;
     height: 0;
-    opacity: 0;
-    background-color: #532CA6;
+    /* opacity: 0; */
+    /* background-color: #532CA6; */
     background-color: linear-gradient(to top, #99b686, #4364f7, #add3ff);
+    z-index: 0;
 }
 
+.Scrollbar{
+    position: relative;
+    width: 15px;
+    background-color: red;
+}
+/*
 .clickscrollbar{
     position: fixed;
     top: 0;
@@ -152,8 +159,9 @@ main{
     opacity: 0;
     background-color: #532CA6;
     background-color: rgb(170, 170, 170, 0.356);
-} */
-
+    z-index: 6;
+} 
+*/
 
 .title_adduser{
     width: 100%;
