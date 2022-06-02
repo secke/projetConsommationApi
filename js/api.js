@@ -26,7 +26,7 @@ function savechange(elem,id){
 }
 
 /////////////////Function supprimer attribut readOnly///
-function supreadonly(elem,id){
+function supreadonly(elem){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
@@ -36,7 +36,7 @@ function supreadonly(elem,id){
 }
 
 
-////////// Fonction pour creer un input/////////////
+////////// Fonction pour creer un input
 function createinput(div2,val){
     var tab = [ 'name','username','email','address']
     for (i in tab){
@@ -177,29 +177,50 @@ function CreateElement( line ) {
 }
 
 
-const progressbar = document.querySelector('.scrollbar');
+// const progressbar = document.querySelector('.scrollbar');
 
+// let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 
 fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
     return res.json()
 }).then(function(data){ 
+    console.log(data.users[0]);
     for (var i = 0; i<=4; i++) {
         CreateElement(data.users[i])
     }
     
-    document.body.scrollTop = 0
-    window.addEventListener('scroll', (e) => {
+    // document.body.scrollTop = 0
+    window.addEventListener('click', (e) => {
         
         if (i>=10) {
             e.preventDefault()
+            // i += 1
         } else {
             CreateElement(data.users[i])
+            
         }
         i += 1
+        var btn = document.querySelector(".btn_update")
+        console.log(btn)
     })
+    // i += 1
 
+    
     return data.users
 
 })
+var submit = document.querySelector('.btn_submit')
+// console.log(submit)
+var inp = document.querySelectorAll('.input_adduser')
+var form = document.querySelector(".form_adduser")
+// // var btn = document.querySelector(".btn_update")
+// console.log(btn)
+// btn.addEventListener('click', (e)=>{
+//     e.preventDefault()
+//     form.style.display = "block"
+//     elem.style.display = "none"
+    
+// })
+
 
