@@ -1,0 +1,35 @@
+html{
+    background-color:rgb(223, 142, 231) ;
+}
+h1{
+    text-align: center;
+    color: rgb(30, 0, 255);
+    text-decoration:underline;
+}
+body{
+    width: 960x;
+    height: 1000px;
+}
+#papaConnexion{
+    width: 90%;
+    height: 50%;
+}
+
+
+#formConnexion{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:space-around;
+    margin  : 10%;
+    width: 90%;
+    height: 80%;
+    font-size: 40px;
+    color: blue;
+    text-decoration: underline;
+
+}
+.champConnexion{
+    display: flex;
+    flex-direction: column;
+}
