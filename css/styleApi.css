@@ -1,53 +1,3 @@
-html{
-    background-color:rgb(223, 142, 231) ;
-}
-h1{
-    text-align: center;
-    color: rgb(30, 0, 255);
-    text-decoration:underline;
-}
-body{
-    width: 960x;
-    height: 1000px;
-}
-#papaConnexion{
-    width: 90%;
-    height: 50%;
-}
-
-
-#formConnexion{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content:space-around;
-    margin  : 10%;
-    width: 90%;
-    height: 80%;
-    font-size: 40px;
-    color: blue;
-    text-decoration: underline;
-
-}
-.champConnexion{
-    display: flex;
-    flex-direction: column;
-}
-input{
-    width: 300px;
-    height: 40px;
-    border: solid 2px;
-    border-radius: 10px;
-    font-size: 30px;
-}
-#boutonConnexion{
-    width: max-content;
-    height: max-content;
-    color: green;
-    font-size: 25px;
-    border-radius: 10px;
-
-}
 *{
     margin: 0;
     padding: 0;
@@ -60,6 +10,7 @@ body{
  }
 main{
    height: 80%;
+   width: 80%;
    display: flex;
    flex-direction: row;
    justify-content: center;
@@ -76,35 +27,85 @@ nav{
 
 }
 
-table{
+.table{
+   border: 5px solid blue;
+   display: flex;
+   flex-wrap: wrap;
+   position: absolute;
    /* margin: 5%; */
-   height: 70%;
-   width: 80%;
+   height: 40%;
+   width: 77%;
    display: block;
    border-collapse: collapse;
    border-color: #AE25DE;
    /* background-color: #F5D7FF; */
    color: white;
+   overflow-y: scroll;
 
  }
  /* tbody{
-    height: 150px;
-    overflow: auto;
+    height: 30%;
+    position: fixed;
+    
  } */
  tr{
+   width: 100%;
     background-color: #F5D7FF;
+    color: #532CA6;
+    margin-top: -3%;
+    margin-left: -0.35%;
+    /* padding-left: -2%; */
  }
- th,td{
-    background-color: #F5D7FF;
-    border: 1px solid #532CA6;
-    padding: 10px;
-    color: white;
+
+ .header{
+    width: 75%;
+    position: fixed;
+    color: #532CA6;
+    margin-bottom: 10%;
+    height: 4%;
+    width: 76.35%;
+    border: 5px solid;
  }
+
  th{
+   width: 18%;
+ }
+
+ .col{
+   width: 150%;
+   height: 20%;
+   margin-top: 20%;
+ }
+
+ #content{
+    width: 150%;
+ }
+
+td{
+   width: 17%;
+   height: 30%;
+   background-color: #F5D7FF;
+   border: 1px solid #532CA6;
+   padding: 10px;
+   color: white;
+
+}
+
+/* td button{
+   width: 16%;
+   height: 20%;
+   background-color: #F5D7FF;
+   border: 1px solid #532CA6;
+   padding: 10px;
+   color: white;
+
+} */
+
+ /* th{
     font-size: 25px;
     background-color: #AE25DE;
 
- }
+ } */
  input{
     border: none;
     background-color: #F5D7FF;
@@ -121,6 +122,18 @@ table{
  }
  .principal{
     width: 100%;
+}
+
+.btn_ajout{
+   display: flex;
+   font-size: 50%;
+   width: 50%;
+   height: 30%;
+   margin-left: 280%;
+   border-radius: 15px;
+   border: 2px solid #AE25DE;
+   color: white;
+   background-color: #AE25DE;
 }
 
 .div_logo_user{
@@ -140,12 +153,12 @@ table{
     margin-right: 2%;
     color: white;
  }
-span{
+/* span{
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
- }
+ } */
 main{
     height: 80%;
     width: 100%;
