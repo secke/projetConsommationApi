@@ -96,6 +96,52 @@ function data_form(line) {
     inp[13].value = line.company.bs
 }
 
+
+function Update(e){
+
+    e.preventDefault();
+    var id = String(line.id)
+    url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
+    var resp = {
+        "name":inp[0].value,
+        "username":inp[1].value,
+        "email":inp[2].value,
+        
+        "street":inp[3].value,
+        "suite":inp[4].value,
+        "city":inp[5].value,
+        "zipcode":inp[6].value,
+        
+        "lat":inp[7].value,
+        "long":inp[8].value,
+        
+        "phone":inp[9].value,
+        "website":inp[10].value,
+        
+        
+        "companyName":inp[11].value,
+        "catchPhrase":inp[12].value,
+        "companyBs":inp[13].value
+        
+    } 
+    const option = {
+        method : 'PUT',
+        headers: {"Content-Type" : "application/json"},
+        mode: 'cors',
+        body : JSON.stringify(resp)
+    }
+   
+    fetch(url, option)
+    .then(reponse=>reponse.json())
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err))
+
+    form.style.display = "none"
+    elem.style.display = "block"
+
+
+}
+
 var a = 'name'
 function createbutton(div2,clas,text,line) {
     var td= document.createElement("td")
@@ -110,59 +156,11 @@ function createbutton(div2,clas,text,line) {
         form.style.display = "block"
         elem.style.display = "none"
         data_form(line)
-        
+        console.log(clas);
         submit.addEventListener('click', (e)=>{
-            e.preventDefault();
-            var id = String(line.id)
-            url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
-            var resp = {
-                "name":inp[0].value,
-                "username":inp[1].value,
-                "email":inp[2].value,
-                
-                "street":inp[3].value,
-                "suite":inp[4].value,
-                "city":inp[5].value,
-                "zipcode":inp[6].value,
-                
-                "lat":inp[7].value,
-                "long":inp[8].value,
-                
-                "phone":inp[9].value,
-                "website":inp[10].value,
-                
-                
-                "companyName":inp[11].value,
-                "catchPhrase":inp[12].value,
-                "companyBs":inp[13].value
-                
-            } 
-            console.log(resp)
-            const option = {
-                method : 'PUT',
-                headers: {"Content-Type" : "application/json"},
-                mode: 'cors',
-                body : JSON.stringify(resp)
-            }
-            // class Put {
-            //     async put(url, resp) {
-            //         const reponse = await fetch(url, option)
-            //     }
-            // }
-            // var http = new Put;
-            // http.put(url,resp)
-
-            fetch(url, option)
-            .then(reponse=>reponse.json())
-            .then(data=>console.log(data))
-            .catch(err=>console.log(err))
-
-            form.style.display = "none"
-            elem.style.display = "block"
-
-        })
-
-        
+                Update(e)
+               
+            })
         
     
     })
@@ -189,52 +187,45 @@ function CreateElement( line ) {
  
 }
 
+function scroll(data){
+    var table=document.querySelector("table")
+    var verif=true
+    var taille= data["users"].length
+    for(var i=0;i<=4;i++){
+        CreateElement(data.users[i])
+        }
+        table.addEventListener("scroll",(e)=>{
+                        e.preventDefault()
+                    if(i<taille){
+                        CreateElement(data.users[i])
+                    i++
 
-// const progressbar = document.querySelector('.scrollbar');
 
-// let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    }
+                   
+        })
+    
+    
 
-var btn_scroll = document.querySelector('.clickscrollbar')
+}
+
+    
+    
+
+
+
+
 fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
     return res.json()
 }).then(function(data){ 
-    // console.log(data.users[0]);
-    for (var i = 0; i<=6; i++) {
-        CreateElement(data.users[i])
-    }
-    
-    // document.body.scrollTop = 0
-    btn_scroll.addEventListener('click', (e) => {
-        console.log(data.length)
-        if (i>=10) {
-            e.preventDefault()
-            // i += 1
-            btn_scroll.style.display = "none"
-        } else {
-            CreateElement(data.users[i])
-            
-        }
-        i += 1
-        var btn = document.querySelector(".btn_update")
-        console.log(btn)
-    })
-    // i += 1
-
+    scroll(data)
+   
     
     return data.users
 
 })
 var submit = document.querySelector('.btn_submit')
-// console.log(submit)
 var inp = document.querySelectorAll('.input_adduser')
 var form = document.querySelector(".form_adduser")
-// // var btn = document.querySelector(".btn_update")
-// console.log(btn)
-// btn.addEventListener('click', (e)=>{
-//     e.preventDefault()
-//     form.style.display = "block"
-//     elem.style.display = "none"
-    
-// })
 
 
