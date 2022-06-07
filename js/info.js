@@ -1,6 +1,7 @@
 // ############## Recuperation de l'id du user #############
 
 var Id = sessionStorage.getItem('id')
+var token = sessionStorage.getItem('token')
 
 console.log(Id)
 
@@ -18,7 +19,7 @@ console.log(nom)
 
 //################### Recuperation des infos du user en fonction de son id #######################
 
-url = `http://127.0.0.1:5000/api_groupe_7/users/${Id}`
+url = `http://127.0.0.1:5000/api_groupe_7/users/${Id}`+"?token="+token
 
 fetch(url).then(function (result) {
     return result.json()

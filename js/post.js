@@ -2,6 +2,8 @@
 var body, title
 
 var Id = sessionStorage.getItem('id')
+var token = sessionStorage.getItem('token')
+console.log(token   )
 
 console.log(Id)
 
@@ -37,7 +39,7 @@ function crediv (titre, contenu) {
 
 // crediv()
 
-url = 'http://127.0.0.1:5000/api_groupe_7/posts'
+url = 'http://127.0.0.1:5000/api_groupe_7/posts'+"?token="+token
 
 
 console.log(parent)

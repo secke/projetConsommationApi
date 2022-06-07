@@ -28,7 +28,6 @@ console.log(token)
 
 var boutonDecon=document.querySelector('.btn_deconnect')
 boutonDecon.addEventListener('click',()=>{
-    // alert('ça marche')
     sessionStorage.removeItem('token')
     window.location.replace('connexion.html');
 
@@ -213,7 +212,6 @@ function createbutton(div2,clas,text,line) {
 
             form.style.display = "none"
             elem.style.display = "block"
-
         })
 
     })
@@ -235,8 +233,17 @@ function CreateElement( line ) {
     var td=td.appendChild(checkbox)
     // tbody.appendChild(td)
     editline(checkbox,line.id)
-    createbutton(cretr, "btn_update", "Update",line)
-    createbutton(cretr, "btn_del", "Del")
+    
+    if (Profil=="secke"){
+        // btn_down.style.desabled = "true"
+        createbutton(cretr, "btn_update", "Update",line)
+        createbutton(cretr, "btn_del", "Del")
+    } else if (Profil=="amy"){
+        createbutton(cretr, "btn_update", "Update",line)
+    }
+    var btn_down = document.querySelector('.btn_update')
+    console.log("btn_up",btn_down)
+    
 
  
 }
@@ -246,9 +253,6 @@ const btn_ajout = document.querySelector('.btn_ajout');
 
 // ############### Methode GET affichage et scrolling des users ###############
 
-
-
-// var btn_scroll = document.querySelector('.clickscrollbar')
 fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
     return res.json()
 }).then(function(data){ 
@@ -273,9 +277,6 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(
     })
     })
 
-    
-    // return data.users
-
 
 // ############# Methode POST des users ###################
 
@@ -288,8 +289,6 @@ btn_ajout.addEventListener('click', (e)=>{
     console.log('hello')
     form.style.display = "block"
     elem.style.display = "none"
-    
-    // console.log(resp)
     submit.addEventListener('click', (e)=>{
         e.preventDefault()
         resp = donnees_json()
@@ -298,7 +297,6 @@ btn_ajout.addEventListener('click', (e)=>{
         const option = {
             method : 'POST',
             headers: {"Content-Type" : "application/json"},
-            // mode: 'cors',
             body : JSON.stringify(resp)
         }
         fetch(url, option)
@@ -374,5 +372,3 @@ function connect_post(line){
 // //     elem.style.display = "none"
     
 // // })
-
-
