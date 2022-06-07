@@ -1,0 +1,175 @@
+
+body{
+    width: 100%;
+    height: 900px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+
+.body_info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* border: 2px solid black; */
+}
+
+.principal{
+    width: 100%;
+    height: 20%;
+    background-color: #532CA6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 0px 0px 40px 40px ;
+ }
+
+ .div_logo_user{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 60px;
+    color: white;
+   
+ }
+/* 
+ #iconhome{
+     width: 100%;
+     height: 100%;
+    color: white;
+    align-self: center;
+    margin-left: 10%;
+    margin-right: 2%;
+ } */
+
+ .deconnexion{
+    width: 45%;
+    height: 40%;
+    margin-top: 15%;
+    margin-right: 15px;
+    border-radius: 15px;
+    background-color: #AE25DE;
+    color: white;
+ }
+
+ .ajouter_element{
+    width: max-content;
+    /* height: max-content; */
+    border-radius: 15px;
+    color: rgb(171, 146, 9);
+    font-weight: bold;
+ }
+
+
+ nav a{
+     text-decoration: none;
+ }
+
+.block1{
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 2px solid black; */
+ }
+ .champ{
+    display: flex;
+    width: 90%;
+ }
+ 
+ .champ label,.block2 h3{
+    color: white;
+    background-color: #532CA6;
+    padding: 20px;
+    font-size: 30px;
+    align-items: flex-end;
+    width: 20%;
+    margin-left: 15px;
+   
+ }
+ .champ input{
+    width: 40%;
+    align-items: flex-end;
+    margin-left: 30px;
+    
+ }
+/*  
+ .input_password{
+    font-size: 1em;
+   
+    width: 100%;
+    height: 60%;
+   transition: all 0.2s;
+ }
+ 
+ .champ_password{
+    
+    position: relative;
+    height: 80%;
+ } */
+  
+ 
+ label .password-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    left: 38%;
+    width: 20px;
+    color: black;
+  }
+ 
+  label .password-icon:hover {
+    cursor: pointer;
+  }
+ 
+  label .password-icon .feather-eye-off {
+    display: none;
+  }
+ 
+ .champ .infouser{
+    background-color: #F5D7FF;
+    width: 60%;
+    border: #F5D7FF;
+    align-items: flex-end;
+    margin-left: 30px;
+    color: blue;
+    font-size: 30px;
+    font-weight: bold;
+ }
+ 
+ .block2{
+ 
+    width: 45%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    /* border: 2px solid black; */
+
+
+ }
+ 
+ .sblock{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color:#F5D7FF;
+ }
+ 
+ .block2 h3{
+    margin: 15px;
+    margin-left: 40%;
+ }
+
+ /* .div_logo_user:hover{
+    pointer-events: visible;
+ } */

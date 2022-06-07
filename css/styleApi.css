@@ -9,6 +9,7 @@ body{
  }
 main{
    height: 80%;
+   width: 80%;
    display: flex;
    flex-direction: row;
    justify-content: center;
@@ -30,7 +31,6 @@ table{
    display: block;
    border-collapse: collapse;
    border-color: #AE25DE;
-   color: white;
    overflow-y: auto;
    height: 250px;
 
@@ -40,22 +40,61 @@ table{
     top: 0;
  }
  
- 
- tr{
-    background-color: #F5D7FF;
-    width: 100%;
+ table thead th{
+   position: sticky;
+   top: 0;
+}
+
+
+tr{
+   background-color: #F5D7FF;
+   width: 100%;
+}
+th,td{
+   background-color: #F5D7FF;
+   border: 1px solid #532CA6;
+   padding: 10px;
+   color: white;
+}
+th{
+   font-size: 25px;
+   background-color: #AE25DE;
+
+}
+input{
+  font-size: 20px;
+   border: none;
+   background-color: #F5D7FF;
+}
+ #content{
+    width: 150%;
  }
- th,td{
-    background-color: #F5D7FF;
-    border: 1px solid #532CA6;
-    padding: 10px;
-    color: white;
- }
- th{
+
+td{
+   width: 17%;
+   height: 30%;
+   background-color: #F5D7FF;
+   border: 1px solid #532CA6;
+   padding: 10px;
+   color: white;
+
+}
+
+/* td button{
+   width: 16%;
+   height: 20%;
+   background-color: #F5D7FF;
+   border: 1px solid #532CA6;
+   padding: 10px;
+   color: white;
+
+} */
+
+ /* th{
     font-size: 25px;
     background-color: #AE25DE;
 
- }
+ } */
  input{
    font-size: 20px;
     border: none;
@@ -76,6 +115,18 @@ table{
     width: 100%;
 }
 
+.btn_ajout{
+   display: flex;
+   font-size: 50%;
+   width: 50%;
+   height: 30%;
+   margin-left: 290%;
+   border-radius: 15px;
+   /* border: 2px solid #AE25DE; */
+   color: white;
+   background-color: #AE25DE;
+}
+
 .div_logo_user{
     width: 25%;
     height: 100%;
@@ -93,12 +144,12 @@ table{
     margin-right: 2%;
     color: white;
  }
-span{
+/* span{
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
- }
+ } */
 main{
     height: 80%;
     width: 100%;
@@ -137,7 +188,7 @@ form{
    box-shadow:  inset 0px 4px 4px rgba(0, 0, 0, 0.25);
    width: 70%;
 }
-.btn_submit{
+.btn_submit,.voir_plus{
    background-color: #AE25DE;
    color: white;
    border: #AE25DE;
@@ -145,5 +196,11 @@ form{
    font-size: larger;
    border-radius: 0.5em;
    height: 20%;
+}
+.voir_plus{
+   font-size: 20px;
+   width: 60%;
+   border-radius: 0.2em;
+   height: 12%;
 }
 
