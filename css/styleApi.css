@@ -122,9 +122,22 @@ td{
    height: 30%;
    margin-left: 290%;
    border-radius: 15px;
-   /* border: 2px solid #AE25DE; */
+   border: 2px solid #AE25DE;
+   margin-top: 15%;  
    color: white;
    background-color: #AE25DE;
+}
+.btn_deconnect{
+   margin-left: 5%;
+   /* margin-top: 5%; */
+   width: 70%;
+   height: 25%;
+   background-color: #AE25DE;
+   color: white;
+   font-size: large;
+   border: 2px solid #AE25DE;
+   border-radius: 10px;
+
 }
 
 .div_logo_user{
@@ -144,12 +157,12 @@ td{
     margin-right: 2%;
     color: white;
  }
-/* span{
+ span{
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
- } */
+ } 
 main{
     height: 80%;
     width: 100%;

@@ -1,8 +1,51 @@
 ////////Function pour modifier une information  d'un  utilisateur en connaissant son id/////
 
-function modifuser(id,valeur, cle){
+var Profil = sessionStorage.getItem('profil')
+var pass = sessionStorage.getItem('password')
+var userTok = sessionStorage.getItem('username')
+
+fetch('http://127.0.0.1:5000/api_groupe_7/login',{
+        method : 'POST',
+        headers: {"Content-Type" : "application/json"},
+        mode: 'cors',
+        body : JSON.stringify({
+            'Profil':Profil,
+            'username': userTok,
+            'password' : pass
+})}).then(prom => prom.json())
+.then(sortie => {
+        let tok=sortie.token
+        sessionStorage.setItem('token',tok)
+})
+
+
+var token = sessionStorage.getItem('token')
+
+console.log(Profil)
+console.log(userTok)
+console.log(token)
+
+var boutonDecon=document.querySelector('.btn_deconnect')
+boutonDecon.addEventListener('click',()=>{
+    // alert('ça marche')
+    sessionStorage.removeItem('token')
+    window.location.replace('connexion.html');
+
+})
+
+// var test_btn_update=document.querySelector('.btn_update')
+  
+// if (Profil==='lamine'){
+//     console.log('yes_visiteur')
+//     test_btn_update.style.display='none'
+//     // let test_btn_update=document.querySelector('.btn_update')
+//     // test_btn_update.style.display='none'
+// };
+
+function modifuser(id,valeur, cle,token){
         id=String(id)
-        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id
+        token=String(token)
+        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
         new_dict = {}
         new_dict[`${cle}`] = valeur
     let promise = fetch(url, {
@@ -23,17 +66,17 @@ function savechange(elem,id){
     elem.addEventListener("change",function (){
         var valeur=elem.value
         var cle=elem.getAttribute('class')
-         modifuser(id,valeur,cle)
+         modifuser(id,valeur,cle,token)
          elem.setAttribute("readonly","true")
          elem.style.backgroundColor="#F5D7FF"
     })
 }
 
-var id;
+var id, val;
 
 /////////////////Function supprimer attribut readOnly///
 
-function supreadonly(elem){
+function supreadonly(elem, id){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
@@ -196,13 +239,12 @@ function CreateElement( line ) {
     createbutton(cretr, "btn_del", "Del")
     createbutton(cretr,"voir_plus","...")
 
-
  
 }
 
 function scroll(data){
     var table=document.querySelector("table")
-    var verif=true
+    console.log(data);
     var taille= data["users"].length
     for(var i=0;i<=4;i++){
         CreateElement(data.users[i])
@@ -228,8 +270,8 @@ function scroll(data){
 
 
 
-fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
-    
+// var btn_scroll = document.querySelector('.clickscrollbar')
+fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
     return res.json()
 }).then(function(data){ 
     scroll(data)
