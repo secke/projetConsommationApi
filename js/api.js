@@ -1,14 +1,52 @@
 ////////Function pour modifier un utilisateur/////
 
-// var profil = sessionStorage.getItem('profil')
-// console.log(profil)
-// if (profil===lamine){
-    
-// }
 
-function modifuser(id,valeur, cle){
+var Profil = sessionStorage.getItem('profil')
+var pass = sessionStorage.getItem('password')
+var userTok = sessionStorage.getItem('username')
+
+fetch('http://127.0.0.1:5000/api_groupe_7/login',{
+        method : 'POST',
+        headers: {"Content-Type" : "application/json"},
+        mode: 'cors',
+        body : JSON.stringify({
+            'Profil':Profil,
+            'username': userTok,
+            'password' : pass
+})}).then(prom => prom.json())
+.then(sortie => {
+        let tok=sortie.token
+        sessionStorage.setItem('token',tok)
+})
+
+
+var token = sessionStorage.getItem('token')
+
+console.log(Profil)
+console.log(userTok)
+console.log(token)
+
+var boutonDecon=document.querySelector('.btn_deconnect')
+boutonDecon.addEventListener('click',()=>{
+    // alert('ça marche')
+    sessionStorage.removeItem('token')
+    window.location.replace('connexion.html');
+
+})
+
+// var test_btn_update=document.querySelector('.btn_update')
+  
+// if (Profil==='lamine'){
+//     console.log('yes_visiteur')
+//     test_btn_update.style.display='none'
+//     // let test_btn_update=document.querySelector('.btn_update')
+//     // test_btn_update.style.display='none'
+// };
+
+function modifuser(id,valeur, cle,token){
         id=String(id)
-        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id
+        token=String(token)
+        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
         new_dict = {}
         new_dict[`${cle}`] = valeur
     let promise = fetch(url, {
@@ -27,16 +65,16 @@ function savechange(elem,id){
     elem.addEventListener("change",function (){
         var valeur=elem.value
         var cle=elem.getAttribute('class')
-         modifuser(id,valeur,cle)
+         modifuser(id,valeur,cle,token)
          elem.setAttribute("readonly","true")
     })
 }
 
-var id;
+var id, val;
 
 /////////////////Function supprimer attribut readOnly///
 
-function supreadonly(elem){
+function supreadonly(elem, id){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
@@ -151,13 +189,13 @@ function createbutton(div2,clas,text,line) {
         submit.addEventListener('click', (e)=>{
             e.preventDefault();
             var id = String(line.id)
-            url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
+            url = "http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
             var resp = donnees_json()
             console.log(resp)
             const option = {
                 method : 'PUT',
                 headers: {"Content-Type" : "application/json"},
-                mode: 'cors',
+                // mode: 'cors',
                 body : JSON.stringify(resp)
             }
             // class Put {
@@ -200,7 +238,6 @@ function CreateElement( line ) {
     createbutton(cretr, "btn_update", "Update",line)
     createbutton(cretr, "btn_del", "Del")
 
-
  
 }
 
@@ -211,12 +248,11 @@ const btn_ajout = document.querySelector('.btn_ajout');
 
 
 
-fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
-    
+// var btn_scroll = document.querySelector('.clickscrollbar')
+fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
     return res.json()
 }).then(function(data){ 
     // console.log(data.users[0]);
-    connect_post(data.users[1])
     for (var i = 0; i<=9; i++) {
         CreateElement(data.users[i])
     }
@@ -237,11 +273,51 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     })
     })
 
+    
+    // return data.users
+
 
 // ############# Methode POST des users ###################
 
 var elem=document.querySelector('table')
 
+// const btn_ajout = document.querySelector('.btn_ajout');
+
+btn_ajout.addEventListener('click', (e)=>{
+    e.preventDefault()
+    console.log('hello')
+    form.style.display = "block"
+    elem.style.display = "none"
+    
+    // console.log(resp)
+    submit.addEventListener('click', (e)=>{
+        e.preventDefault()
+        resp = donnees_json()
+        console.log(resp)
+        var url = `http://127.0.0.1:5000/api_groupe_7/users`+"?token="+token
+        const option = {
+            method : 'POST',
+            headers: {"Content-Type" : "application/json"},
+            // mode: 'cors',
+            body : JSON.stringify(resp)
+        }
+        fetch(url, option)
+            .then(reponse=>reponse.json())
+            .then(data=>console.log(data))
+            .catch(err=>console.log(err))
+
+        form.style.display = "none"
+        elem.style.display = "block"
+    })
+})
+
+var submit = document.querySelector('.btn_submit')
+console.log(btn_ajout)
+var inp = document.querySelectorAll('.input_adduser')
+var form = document.querySelector(".form_adduser")
+// // var btn = document.querySelector(".btn_update")
+// console.log(btn)
+// btn.addEventListener('click', (e)=>{
 // const btn_ajout = document.querySelector('.btn_ajout');
 
 console.log(btn_ajout)

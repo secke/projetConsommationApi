@@ -129,9 +129,26 @@ td{
    font-size: 50%;
    width: 50%;
    height: 30%;
+<<<<<<< HEAD
+   margin-left: 280%;
+   border-radius: 15px;
+   border: 2px solid #AE25DE;
+   color: white;
+   background-color: #AE25DE;
+}
+.btn_deconnect{
+   font-size: 40%;
+   width: max-content;
+   height: max-content;
+   margin-top: 20px;
+   margin-left: 10px;
+   border-radius: 15px;
+   border: 2px solid #AE25DE;
+=======
    margin-left: 290%;
    border-radius: 15px;
    /* border: 2px solid #AE25DE; */
+>>>>>>> 60d4755fb99bf5faa5c253f9290d022f0363ae26
    color: white;
    background-color: #AE25DE;
 }
