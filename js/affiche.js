@@ -160,14 +160,6 @@ div5.addEventListener('click', (e)=>{
             mode: 'cors',
             body : JSON.stringify(resp)
         }
-        // class Put {
-        //     async put(url, resp) {
-        //         const reponse = await fetch(url, option)
-        //     }
-        // }
-        // var http = new Put;
-        // http.put(url,resp)
-
         fetch(url, option)
         .then(reponse=>reponse.json())
         .then(data=>console.log(data))
@@ -195,7 +187,6 @@ var checkbox=document.createElement("INPUT")
 checkbox.setAttribute("type","checkbox")
 checkbox.setAttribute("class","editline")
 var td=td.appendChild(checkbox)
-// tbody.appendChild(td)
 editline(checkbox,line.id)
 createbutton(cretr, "btn_update", "Update",line)
 createbutton(cretr, "btn_del", "Del")
