@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de connexion</title>
+    <link rel="stylesheet" href="css/connexion.css">
+</head>
+<body>
+    <div class="container">
+        <main>
+            <div class="form inscrip">
+                <h2>Créer un compte</h2>
+                <form class="formulaire1">
+                    <label for="profil">Profil</label>
+                    <input type="text" name="profil" id="profil">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username1">
+                    <label for="password">Mot de passe</label>
+                    <input type="text" name="password" id="password1">
+                    <button type="submit">Inscription</button>
+                </form>
+            </div>
+
+
+            <div class="form signIn">
+                <h2>Se Connecter</h2>
+                <form class="formulaire2">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username2">
+                    <label for="password">Mot de passe</label>
+                    <input type="text" name="password" id="password2">
+                    <button type="submit">Connexion</button>
+                </form>
+            </div>
+        </main>
+
+        <aside>
+            <div class="sign-in-block">
+                <h2>Déjà Inscrit?</h2>
+
+                <button type="submit" id="sign-in-btn">Se Connecter</button>
+            </div>
+
+            <div class="sign-up-block">
+                <h2>Nouveau Utilisateur?</h2>
+
+                <button type="submit" id="sign-up-btn">S'Inscrire</button>
+            </div>
+        </aside>
+
+    </div>
+    <script src="js/connexion.js"></script>
+</body>
+</html>

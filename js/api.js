@@ -1,63 +1,52 @@
-const formulaire=document.querySelector("#formConnexion")
-const profil=document.querySelector("#profil")
-const username=document.querySelector("#username")
-const motPass=document.querySelector("#password")
-
-// définition des fonctions de validation des inputs
-
-const isProfil=profil.value===''?false:true;
-const isMP= motPass.value===''?false:true;
-
-const validUsername=username.value===''?false:true;
-
-const validPassword= function (){
-    const re= new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#€\$%\&^])(?=.{4,})");
-    if (!isMP){
-        let saisiMP=motPass.value;
-        return re.test(saisiMP);
-    }
-};
-
-const validProfilLamine= () => {
-    if (!isProfil) {
-        let nomProfil=profil.value;
-        let sortieProfil=nomProfil.trim()==="lamine"?true:false;
-        return sortieProfil
-    }
-};
-
-
-const validProfilAmy= () => {
-    if (!isProfil) {
-        let nomProfil=profil.value;
-        let sortieProfil=nomProfil.trim()==="amy"?true:false;
-        return sortieProfil
-    }
-};
-
-const validProfilSecke= () => {
-    if (!isProfil) {
-        let nomProfil=profil.value;
-        let sortieProfil=nomProfil.trim()==="secke"?true:false;
-        return sortieProfil
-    }
-};
-
-
-
-
-formulaire.addEventListener('submit', (e)=>{
-    e.preventDefault()
-    if (validPassword() && (validProfilLamine() || validProfilAmy() || validProfilSecke()) && (!validUsername) ){
-        formulaire.submit();
-    }else{alert("oops");}
-    // profil.value===""?alert("oops"):alert("yes");
-
-});
 ////////Function pour modifier un utilisateur/////
-function modifuser(id,valeur, cle){
+
+
+var Profil = sessionStorage.getItem('profil')
+var pass = sessionStorage.getItem('password')
+var userTok = sessionStorage.getItem('username')
+
+fetch('http://127.0.0.1:5000/api_groupe_7/login',{
+        method : 'POST',
+        headers: {"Content-Type" : "application/json"},
+        mode: 'cors',
+        body : JSON.stringify({
+            'Profil':Profil,
+            'username': userTok,
+            'password' : pass
+})}).then(prom => prom.json())
+.then(sortie => {
+        let tok=sortie.token
+        sessionStorage.setItem('token',tok)
+})
+
+
+var token = sessionStorage.getItem('token')
+
+console.log(Profil)
+console.log(userTok)
+console.log(token)
+
+var boutonDecon=document.querySelector('.btn_deconnect')
+boutonDecon.addEventListener('click',()=>{
+    // alert('ça marche')
+    sessionStorage.removeItem('token')
+    window.location.replace('connexion.html');
+
+})
+
+// var test_btn_update=document.querySelector('.btn_update')
+  
+// if (Profil==='lamine'){
+//     console.log('yes_visiteur')
+//     test_btn_update.style.display='none'
+//     // let test_btn_update=document.querySelector('.btn_update')
+//     // test_btn_update.style.display='none'
+// };
+
+function modifuser(id,valeur, cle,token){
         id=String(id)
-        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id
+        token=String(token)
+        let url="http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
         new_dict = {}
         new_dict[`${cle}`] = valeur
     let promise = fetch(url, {
@@ -76,15 +65,16 @@ function savechange(elem,id){
     elem.addEventListener("change",function (){
         var valeur=elem.value
         var cle=elem.getAttribute('class')
-         modifuser(id,valeur,cle)
+         modifuser(id,valeur,cle,token)
          elem.setAttribute("readonly","true")
-     })
+    })
 }
 
-var id;
+var id, val;
 
 /////////////////Function supprimer attribut readOnly///
-function supreadonly(elem){
+
+function supreadonly(elem, id){
     elem.addEventListener('dblclick', function () {
             elem.removeAttribute('readonly')
         })
@@ -95,6 +85,8 @@ function supreadonly(elem){
 
 
 ////////// Fonction pour creer un input
+
+
 function createinput(div2,val){
     var tab = [ 'name','username','email','address']
     for (i in tab){
@@ -118,6 +110,8 @@ function createinput(div2,val){
   
    
 }
+
+// ######### Fonction permettant d'editer les lignes ##########
 
 function editline(bouton,id){
     bouton.addEventListener('change',function () {
@@ -152,6 +146,31 @@ function data_form(line) {
     inp[13].value = line.company.bs
 }
 
+function donnees_json() {
+    var resp = {
+        "name":inp[0].value,
+        "username":inp[1].value,
+        "email":inp[2].value,
+        
+        "street":inp[3].value,
+        "suite":inp[4].value,
+        "city":inp[5].value,
+        "zipcode":inp[6].value,
+        
+        "lat":inp[7].value,
+        "lng":inp[8].value,
+        
+        "phone":inp[9].value,
+        "website":inp[10].value,
+        
+        "companyName":inp[11].value,
+        "catchPhrase":inp[12].value,
+        "companyBs":inp[13].value
+        
+    } 
+    return resp
+}
+
 var a = 'name'
 function createbutton(div2,clas,text,line) {
     var td= document.createElement("td")
@@ -170,34 +189,13 @@ function createbutton(div2,clas,text,line) {
         submit.addEventListener('click', (e)=>{
             e.preventDefault();
             var id = String(line.id)
-            url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
-            var resp = {
-                "name":inp[0].value,
-                "username":inp[1].value,
-                "email":inp[2].value,
-                
-                "street":inp[3].value,
-                "suite":inp[4].value,
-                "city":inp[5].value,
-                "zipcode":inp[6].value,
-                
-                "lat":inp[7].value,
-                "long":inp[8].value,
-                
-                "phone":inp[9].value,
-                "website":inp[10].value,
-                
-                
-                "companyName":inp[11].value,
-                "catchPhrase":inp[12].value,
-                "companyBs":inp[13].value
-                
-            } 
+            url = "http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
+            var resp = donnees_json()
             console.log(resp)
             const option = {
                 method : 'PUT',
                 headers: {"Content-Type" : "application/json"},
-                mode: 'cors',
+                // mode: 'cors',
                 body : JSON.stringify(resp)
             }
             // class Put {
@@ -218,49 +216,50 @@ function createbutton(div2,clas,text,line) {
 
         })
 
-        
-        
-    
     })
     return div5
 }
 
+// ############## Fonction de creation et d'ajout des lignes du tableau ##############
 
 
 function CreateElement( line ) {
     var cretr = document.createElement('tr')
     var tbody=document.querySelector('#content').appendChild(cretr)
     createinput(cretr,line)
-    var td=document.createElement("td")
+    var td= cretr.appendChild(document.createElement("td"))
+    cretr.classList = 'col'
     var checkbox=document.createElement("INPUT")
     checkbox.setAttribute("type","checkbox")
     checkbox.setAttribute("class","editline")
-    var td=document.createElement("td").appendChild(checkbox)
-    cretr.appendChild(td)
+    var td=td.appendChild(checkbox)
+    // tbody.appendChild(td)
     editline(checkbox,line.id)
     createbutton(cretr, "btn_update", "Update",line)
     createbutton(cretr, "btn_del", "Del")
 
-
  
 }
+
+
+// ############### Methode GET affichage et scrolling des users ###############
 
 
 // const progressbar = document.querySelector('.scrollbar');
 
 // let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-var btn_scroll = document.querySelector('.clickscrollbar')
-fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
+// var btn_scroll = document.querySelector('.clickscrollbar')
+fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
     return res.json()
 }).then(function(data){ 
     // console.log(data.users[0]);
-    for (var i = 0; i<=6; i++) {
+    for (var i = 0; i<=9; i++) {
         CreateElement(data.users[i])
     }
     
     // document.body.scrollTop = 0
-    btn_scroll.addEventListener('click', (e) => {
+    window.addEventListener('scroll', (e) => {
         console.log(data.length)
         if (i>=10) {
             e.preventDefault()
@@ -280,8 +279,44 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){
     return data.users
 
 })
+
+
+// ############# Methode POST des users ###################
+
+var elem=document.querySelector('table')
+
+const btn_ajout = document.querySelector('.btn_ajout');
+
+btn_ajout.addEventListener('click', (e)=>{
+    e.preventDefault()
+    console.log('hello')
+    form.style.display = "block"
+    elem.style.display = "none"
+    
+    // console.log(resp)
+    submit.addEventListener('click', (e)=>{
+        e.preventDefault()
+        resp = donnees_json()
+        console.log(resp)
+        var url = `http://127.0.0.1:5000/api_groupe_7/users`+"?token="+token
+        const option = {
+            method : 'POST',
+            headers: {"Content-Type" : "application/json"},
+            // mode: 'cors',
+            body : JSON.stringify(resp)
+        }
+        fetch(url, option)
+            .then(reponse=>reponse.json())
+            .then(data=>console.log(data))
+            .catch(err=>console.log(err))
+
+        form.style.display = "none"
+        elem.style.display = "block"
+    })
+})
+
 var submit = document.querySelector('.btn_submit')
-// console.log(submit)
+console.log(btn_ajout)
 var inp = document.querySelectorAll('.input_adduser')
 var form = document.querySelector(".form_adduser")
 // // var btn = document.querySelector(".btn_update")
