@@ -241,13 +241,12 @@ function CreateElement( line ) {
  
 }
 
+const btn_ajout = document.querySelector('.btn_ajout');
+
 
 // ############### Methode GET affichage et scrolling des users ###############
 
 
-// const progressbar = document.querySelector('.scrollbar');
-
-// let totalheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 // var btn_scroll = document.querySelector('.clickscrollbar')
 fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
@@ -257,14 +256,13 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(
     for (var i = 0; i<=9; i++) {
         CreateElement(data.users[i])
     }
-    
     // document.body.scrollTop = 0
     window.addEventListener('scroll', (e) => {
         console.log(data.length)
         if (i>=10) {
             e.preventDefault()
             // i += 1
-            btn_scroll.style.display = "none"
+            // btn_scroll.style.display = "none"
         } else {
             CreateElement(data.users[i])
             
@@ -273,19 +271,17 @@ fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(
         var btn = document.querySelector(".btn_update")
         console.log(btn)
     })
-    // i += 1
+    })
 
     
-    return data.users
-
-})
+    // return data.users
 
 
 // ############# Methode POST des users ###################
 
 var elem=document.querySelector('table')
 
-const btn_ajout = document.querySelector('.btn_ajout');
+// const btn_ajout = document.querySelector('.btn_ajout');
 
 btn_ajout.addEventListener('click', (e)=>{
     e.preventDefault()
@@ -322,10 +318,61 @@ var form = document.querySelector(".form_adduser")
 // // var btn = document.querySelector(".btn_update")
 // console.log(btn)
 // btn.addEventListener('click', (e)=>{
+// const btn_ajout = document.querySelector('.btn_ajout');
+
+console.log(btn_ajout)
+
+function connect_post(line){
+    btn_ajout.addEventListener('click', (e)=>{
+        e.preventDefault()
+        console.log(btn_ajout)
+        sessionStorage.setItem('userId', line.id)
+        sessionStorage.setItem('name',line.name )
+        window.location.replace('user.html')
+    })
+}
+
+// btn_ajout.addEventListener('click', (e)=>{
 //     e.preventDefault()
+//     console.log('hello')
 //     form.style.display = "block"
 //     elem.style.display = "none"
     
+//     // console.log(resp)
+//     submit.addEventListener('click', (e)=>{
+//         e.preventDefault()
+//         resp = donnees_json()
+//         console.log(resp)
+//         var url = `http://127.0.0.1:5000/api_groupe_7/users`
+//         const option = {
+//             method : 'POST',
+//             headers: {"Content-Type" : "application/json"},
+//             mode: 'cors',
+//             body : JSON.stringify(resp)
+//         }
+//         fetch(url, option)
+//             .then(reponse=>reponse.json())
+//             .then(data=>console.log(data))
+//             .catch(err=>console.log(err))
+
+//         form.style.display = "none"
+//         elem.style.display = "block"
+//     })
 // })
+
+
+
+// var submit = document.querySelector('.btn_submit')
+// console.log(btn_ajout)
+// var inp = document.querySelectorAll('.input_adduser')
+// var form = document.querySelector(".form_adduser")
+// // // var btn = document.querySelector(".btn_update")
+// // console.log(btn)
+// // btn.addEventListener('click', (e)=>{
+// //     e.preventDefault()
+// //     form.style.display = "block"
+// //     elem.style.display = "none"
+    
+// // })
 
 
