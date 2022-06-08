@@ -8,7 +8,7 @@
 
 function modifuser(id,valeur, cle){
     id=String(id)
-    let url="http://127.0.0.1:5000/api_groupe_7/users/"+id
+    let url="http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
     new_dict = {}
     new_dict[`${cle}`] = valeur
 let promise = fetch(url, {
@@ -151,7 +151,7 @@ div5.addEventListener('click', (e)=>{
     submit.addEventListener('click', (e)=>{
         e.preventDefault();
         var id = String(line.id)
-        url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
+        url = "http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
         var resp = donnees_json()
         console.log(resp)
         const option = {
@@ -202,7 +202,7 @@ const btn_ajout = document.querySelector('.btn_ajout');
 
 
 
-fetch('http://127.0.0.1:5000/api_groupe_7/users').then(function(res){ 
+fetch('http://127.0.0.1:5000/api_groupe_7/users'+"?token="+token).then(function(res){ 
 
 return res.json()
 }).then(function(data){ 

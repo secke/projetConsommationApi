@@ -12,7 +12,8 @@ fetch('http://127.0.0.1:5000/api_groupe_7/login',{
             'Profil':Profil,
             'username': userTok,
             'password' : pass
-})}).then(prom => prom.json())
+})})
+.then(prom => prom.json())
 .then(sortie => {
         let tok=sortie.token
         sessionStorage.setItem('token',tok)
@@ -153,7 +154,7 @@ function data_form(line) {
 function Update(e){
     e.preventDefault();
     var id = String(line.id)
-    url = "http://127.0.0.1:5000/api_groupe_7/users/"+id
+    url = "http://127.0.0.1:5000/api_groupe_7/users/"+id+"?token="+token
     var resp = {
         "name":inp[0].value,
         "username":inp[1].value,
@@ -251,20 +252,20 @@ function CreateElement( line ) {
 function scroll(data){
     var table=document.querySelector("table")
     console.log(data);
-    // var taille= data["users"].length
-    // for(var i=0;i<=4;i++){
-    //     CreateElement(data.users[i])
-    //     }
-    //     table.addEventListener("scroll",(e)=>{
-    //                     e.preventDefault()
-    //                 if(i<taille){
-    //                     CreateElement(data.users[i])
-    //                 i++
+    var taille= data["users"].length
+    for(var i=0;i<=3;i++){
+        CreateElement(data.users[i])
+        }
+        table.addEventListener("scroll",(e)=>{
+                        e.preventDefault()
+                    if(i<taille){
+                        CreateElement(data.users[i])
+                    i++
 
 
-    //                 }
+                    }
                    
-    //     })
+        })
     
     
 
