@@ -1,6 +1,8 @@
 var par, clas_par,fils, contenu;
 
 var Id = sessionStorage.getItem('id')
+var token = sessionStorage.getItem('token')
+console.log(token   )
 
 console.log(Id)
 
@@ -39,7 +41,7 @@ function cre_elem_fils (par, clas_par, fils, contenu) {
 console.log(block_album)
 console.log(titre_album)
 
-url = 'http://127.0.0.1:5000/api_groupe_7/albums'
+url = 'http://127.0.0.1:5000/api_groupe_7/albums'+"?token="+token
 
 fetch(url).then(function (result) {
     return result.json()

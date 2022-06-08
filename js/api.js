@@ -27,7 +27,6 @@ console.log(token)
 
 var boutonDecon=document.querySelector('.btn_deconnect')
 boutonDecon.addEventListener('click',()=>{
-    // alert('ça marche')
     sessionStorage.removeItem('token')
     window.location.replace('connexion.html');
 
@@ -234,10 +233,17 @@ function CreateElement( line ) {
     checkbox.setAttribute("class","editline")
     var td=td.appendChild(checkbox)
     editline(checkbox,line.id)
-    console.log(cretr);
-    createbutton(cretr, "btn_update", "Update",line)
-    createbutton(cretr, "btn_del", "Del")
-    createbutton(cretr,"voir_plus","...")
+    
+    if (Profil=="secke"){
+        // btn_down.style.desabled = "true"
+        createbutton(cretr, "btn_update", "Update",line)
+        createbutton(cretr, "btn_del", "Del")
+    } else if (Profil=="amy"){
+        createbutton(cretr, "btn_update", "Update",line)
+    }
+    var btn_down = document.querySelector('.btn_update')
+    console.log("btn_up",btn_down)
+    
 
  
 }
@@ -245,20 +251,20 @@ function CreateElement( line ) {
 function scroll(data){
     var table=document.querySelector("table")
     console.log(data);
-    var taille= data["users"].length
-    for(var i=0;i<=4;i++){
-        CreateElement(data.users[i])
-        }
-        table.addEventListener("scroll",(e)=>{
-                        e.preventDefault()
-                    if(i<taille){
-                        CreateElement(data.users[i])
-                    i++
+    // var taille= data["users"].length
+    // for(var i=0;i<=4;i++){
+    //     CreateElement(data.users[i])
+    //     }
+    //     table.addEventListener("scroll",(e)=>{
+    //                     e.preventDefault()
+    //                 if(i<taille){
+    //                     CreateElement(data.users[i])
+    //                 i++
 
 
-                    }
+    //                 }
                    
-        })
+    //     })
     
     
 

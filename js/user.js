@@ -12,7 +12,7 @@ function ecoute(btn, page) {
     btn.addEventListener('click', (e)=>{
         e.preventDefault()
         console.log(post)
-        sessionStorage.setItem('id',Id)
+        sessionStorage.setItem('id',2)
         window.location.replace(page)
     })
 }
